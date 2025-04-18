@@ -1,9 +1,9 @@
-import React from "react";
-import { ModalLayout } from "@/components/layout/modal/ModalLayout";
-import WarningSvg from "@/components/img/svg/Warning";
 import InfoSvg from "@/components/img/svg/Info";
+import WarningSvg from "@/components/img/svg/Warning";
+import { ModalLayout } from "@/components/layout/modal/ModalLayout";
+import React from "react";
 
-interface ModalProps {
+interface ModalBuilderProps {
   type: "error" | "info";
   title: string;
   message: string;
@@ -22,7 +22,13 @@ const modalStyles = {
   },
 };
 
-function ModalBuilder({ type, title, message, duration = 3000, onClose = () => {} }: ModalProps): React.ReactNode {
+function ModalBuilder({
+  type,
+  title,
+  message,
+  duration = 3000,
+  onClose = () => {},
+}: ModalBuilderProps): React.ReactNode {
   const { icon, className } = modalStyles[type];
   return (
     <ModalLayout icon={icon} className={className} duration={duration} onClose={onClose}>
@@ -33,8 +39,8 @@ function ModalBuilder({ type, title, message, duration = 3000, onClose = () => {
 }
 
 const Modal = {
-  Error: (props: Omit<ModalProps, "type" | "title">) => <ModalBuilder {...props} type="error" title="오류" />,
-  Info: (props: Omit<ModalProps, "type" | "title">) => <ModalBuilder {...props} type="info" title="알림" />,
+  Error: (props: Omit<ModalBuilderProps, "type" | "title">) => <ModalBuilder {...props} type="error" title="오류" />,
+  Info: (props: Omit<ModalBuilderProps, "type" | "title">) => <ModalBuilder {...props} type="info" title="알림" />,
 };
 
 export default Modal;
