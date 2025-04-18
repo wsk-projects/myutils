@@ -4,6 +4,8 @@ on:
   push:
     branches: ["cicd/develop"]
     paths:
+      - "src/**"
+      - "Dockerfile"
       - ".github/workflows/cd-dev.yml"
   workflow_dispatch:
 
