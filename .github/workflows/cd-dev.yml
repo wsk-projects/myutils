@@ -1,0 +1,42 @@
+name: CD - myutils-dev
+
+on:
+  push:
+    branches: ["cicd/develop"]
+    paths:
+      - "src/**"
+      - "Dockerfile"
+      - ".github/workflows/cd-dev.yml"
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: [self-hosted, oci, dev]
+
+    steps:
+      # 1. DockerHub 로그인
+      - name: Docker login
+        run: |
+          echo "${{ secrets.DOCKERHUB_PASSWORD }}" | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
+
+      # 2. 최신 이미지 pull
+      - name: Pull image
+        run: docker pull ${{ secrets.DOCKERHUB_USERNAME }}/next-myutils:dev
+
+      # 3. 기존 컨테이너 종료 및 제거
+      - name: Stop and remove existing container
+        run: |
+          docker stop next-myutils-dev || true
+          docker rm next-myutils-dev || true
+
+      # 4. 새 컨테이너 실행
+      - name: Run container
+        run: |
+          docker run -d \
+            --name next-myutils-dev \
+            -p 3000:3000 \
+            ${{ secrets.DOCKERHUB_USERNAME }}/next-myutils:dev
+
+      # 5. 안 쓰는 이미지 정리
+      - name: Prune unused images
+        run: docker image prune -af
