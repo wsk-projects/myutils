@@ -2,7 +2,7 @@ name: CD - myutils-dev
 
 on:
   push:
-    branches: ["cicd/develop"]
+    branches: ["develop"]
     paths:
       - "src/**"
       - "Dockerfile"

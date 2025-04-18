@@ -2,7 +2,7 @@ name: CI - myutils-dev
 
 on:
   pull_request:
-    branches: ["cicd/develop"]
+    branches: ["develop"]
     paths:
       - "src/**"
       - "Dockerfile"
