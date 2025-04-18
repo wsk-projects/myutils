@@ -162,7 +162,7 @@ export default function ClampCalculator() {
         </Stack.V>
 
         {/* 확인 버튼 */}
-        <Form.Button onSubmit={calculate}>계산하기 & 복사</Form.Button>
+        <Form.Button>계산하기 & 복사</Form.Button>
       </Form.Container>
 
       {/* 결과창 */}

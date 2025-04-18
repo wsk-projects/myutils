@@ -1,8 +1,7 @@
 import FormButton, { FormButtonProps } from "@/components/layout/button/ButtonLayout";
 import FormLayout, { FormLayoutProps } from "@/components/layout/form/FormLayout";
 import InputLayout, { InputLayoutProps } from "@/components/layout/form/InputLayout";
-import FormSelect, { SelectLayoutProps as SelectLayoutProps } from "@/components/layout/form/SelectLayout";
-import { FormEvent } from "react";
+import FormSelect, { SelectLayoutProps } from "@/components/layout/form/SelectLayout";
 
 export const Form = {
   Container: (props: FormLayoutProps) => <FormLayout {...props} className="gap-3" />,

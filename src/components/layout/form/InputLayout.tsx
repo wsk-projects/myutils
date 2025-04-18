@@ -1,4 +1,4 @@
-import { LayoutCommonProps } from "@/types/props/layoutCommonProps";
+import { LayoutCommonProps } from "@/types/props/LayoutCommonProps";
 import clsx from "clsx";
 
 export interface InputLayoutProps extends LayoutCommonProps {
