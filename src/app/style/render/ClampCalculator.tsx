@@ -1,6 +1,6 @@
 "use client";
 
-import { Stack } from "@/components/common/flex/Stack";
+import { Stack } from "@/components/common/Stack";
 import { Form } from "@/components/ui/style/Form";
 import Modal from "@/components/ui/style/Modal";
 import { useState } from "react";
