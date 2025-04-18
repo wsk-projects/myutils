@@ -1,15 +1,15 @@
-function CardContainer({ children }: { children: React.ReactNode }) {
-  return <div className="w-full max-w-md rounded-xl bg-white shadow-lg p-6 space-y-4">{children}</div>;
-}
-function CardDescription({ children }: { children: React.ReactNode }) {
-  return <p className="bg-gray-100 p-2 rounded text-sm text-gray-700">{children}</p>;
-}
-function CardTitle({ children }: { children: React.ReactNode }) {
-  return <h1 className="text-lg font-semibold text-gray-800">{children}</h1>;
+import { CardLayout, CardLayoutProps } from "@/components/layout/CardLayout";
+
+export interface CardProps extends CardLayoutProps {
+  title?: string;
+  description?: string;
+  children?: React.ReactNode;
 }
 
-export const Card = {
-  Container: CardContainer,
-  Title: CardTitle,
-  Description: CardDescription,
-};
+export default function Card({ title, description, children, ...props }: CardProps) {
+  return (
+    <CardLayout title={title} description={description} {...props}>
+      {children}
+    </CardLayout>
+  );
+}
