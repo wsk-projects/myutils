@@ -6,19 +6,17 @@ import styles from "./Modal.module.css";
 import clsx from "clsx";
 
 export interface ModalLayoutProps {
-  className: string;
+  children?: React.ReactNode;
+  className?: string;
   icon?: React.ReactNode;
-  title: string;
-  message: string;
   duration?: number;
   onClose?: () => void;
 }
 
 export function ModalLayout({
+  children,
   className,
   icon,
-  title,
-  message,
   duration = 5000,
   onClose = () => {},
 }: ModalLayoutProps): React.ReactNode {
@@ -47,10 +45,7 @@ export function ModalLayout({
       >
         <div className="flex items-center">
           {icon && <div className="py-1">{icon}</div>}
-          <div className="flex-1">
-            <p className="font-bold">{title}</p>
-            <p className="text-sm">{message}</p>
-          </div>
+          <div className="flex-1">{children}</div>
           <div>
             <button
               onClick={() => {
