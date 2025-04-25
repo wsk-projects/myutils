@@ -1,7 +1,7 @@
-import { LayoutCommonProps, LayoutWrapperProps } from "@/types/props";
+import { CommonLayoutProps, WrapperLayoutProps } from "@/types/props";
 import clsx from "clsx";
 
-export interface CardLayoutProps extends LayoutCommonProps, LayoutWrapperProps {
+export interface CardLayoutProps extends CommonLayoutProps, WrapperLayoutProps {
   title?: string;
   description?: string;
   size?: "sm" | "md" | "lg";
@@ -28,7 +28,7 @@ const descriptionFontSize = {
   lg: "text-[16px]",
 };
 
-export const CardLayout = ({
+export default function CardLayout({
   as: Tag = "div",
   id,
   className,
@@ -36,7 +36,7 @@ export const CardLayout = ({
   title = "Lorem Ipsum",
   description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.\nSed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
   size = "md",
-}: CardLayoutProps) => {
+}: CardLayoutProps) {
   return (
     <Tag id={id} className={clsx("bg-white shadow-lg", baseLayoutSize[size], className)}>
       <h1 className={clsx("text-gray-800", titleFontSize[size])}>{title}</h1>
@@ -44,4 +44,4 @@ export const CardLayout = ({
       {children}
     </Tag>
   );
-};
+}

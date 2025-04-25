@@ -1,8 +1,8 @@
-import { LayoutCommonProps, LayoutWrapperProps } from "@/types/props";
+import { CommonLayoutProps, WrapperLayoutProps } from "@/types/props";
 import clsx from "clsx";
 import { FormEvent } from "react";
 
-export interface FormLayoutProps extends LayoutCommonProps, Pick<LayoutWrapperProps, "children"> {
+export interface FormLayoutProps extends CommonLayoutProps, Pick<WrapperLayoutProps, "children"> {
   flex?: boolean;
   onSubmit: (e: FormEvent<HTMLFormElement>) => void;
 }

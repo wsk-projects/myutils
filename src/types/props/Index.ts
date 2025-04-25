@@ -1,2 +1,2 @@
-export * from "./LayoutCommonProps";
-export * from "./LayoutWrapperProps";
+export * from "./CommonLayoutProps";
+export * from "./WrapperLayoutProps";

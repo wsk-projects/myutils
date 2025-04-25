@@ -1,7 +1,7 @@
-import { LayoutCommonProps } from "@/types/props/LayoutCommonProps";
+import { CommonLayoutProps } from "@/types/props/CommonLayoutProps";
 import clsx from "clsx";
 
-export interface InputLayoutProps extends LayoutCommonProps {
+export interface InputLayoutProps extends CommonLayoutProps {
   value: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   placeholder: string;

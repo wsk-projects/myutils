@@ -1,8 +1,8 @@
-import { LayoutCommonProps } from "@/types/props/LayoutCommonProps";
-import { LayoutWrapperProps } from "@/types/props";
+import { CommonLayoutProps } from "@/types/props/CommonLayoutProps";
+import { WrapperLayoutProps } from "@/types/props";
 import clsx from "clsx";
 
-export interface FormButtonProps extends LayoutCommonProps, Pick<LayoutWrapperProps, "children"> {
+export interface FormButtonProps extends CommonLayoutProps, Pick<WrapperLayoutProps, "children"> {
   variant?: "primary" | "secondary";
   onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
 }
