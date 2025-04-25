@@ -1,8 +1,9 @@
 "use client";
 
+import Button from "@/components/ui/common/Button";
 import Stack from "@/components/ui/common/Stack";
-import { Form } from "@/components/ui/style/Form";
-import Modal from "@/components/ui/style/Modal";
+import { Form } from "@/components/ui/common/Form";
+import Modal from "@/components/ui/common/Modal";
 import { Switch } from "@/components/util/Switch";
 import { Match } from "@/components/util/Switch";
 import { Copy } from "lucide-react";
@@ -164,7 +165,7 @@ export default function ClampCalculator() {
         </Stack.V>
 
         {/* 확인 버튼 */}
-        <Form.Button>계산하기 & 복사</Form.Button>
+        <Button.Primary>계산하기 & 복사</Button.Primary>
       </Form.Container>
 
       {/* 결과창 */}

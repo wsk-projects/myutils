@@ -27,9 +27,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        <div className=" bg-gray-100">
+        <div className="flex flex-col h-screen bg-background">
           <Navbar />
-          <main className="flex min-h-screen items-center justify-center p-6">{children}</main>
+          <main className="h-full flex items-center justify-center p-6">{children}</main>
         </div>
       </body>
     </html>
@@ -41,6 +41,7 @@ function Navbar() {
     <div className="flex justify-center items-center p-2 gap-4">
       <NavLink href="/">Home</NavLink>
       <NavLink href="/style">Style</NavLink>
+      <NavLink href="/color">Color</NavLink>
     </div>
   );
 }
