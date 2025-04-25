@@ -40,6 +40,7 @@ function Navbar() {
   return (
     <div className="flex justify-center items-center p-2 gap-4">
       <NavLink href="/">Home</NavLink>
+      <NavLink href="/style">Style</NavLink>
     </div>
   );
 }
