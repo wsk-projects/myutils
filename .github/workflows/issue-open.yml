@@ -1,0 +1,35 @@
+name: Issue open action
+
+on:
+  issues:
+    types: [opened]
+
+permissions:
+  contents: write
+  issues: write
+  pull-requests: write
+
+jobs:
+  # 이슈 생성자를 Assignee에 추가
+  assign:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Assign issue author
+        uses: actions/github-script@v6
+        with:
+          script: |
+            github.rest.issues.addAssignees({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              assignees: [context.actor]
+            })
+
+  # 이슈 기반 브랜치 생성
+  create-branch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create new Branch
+        uses: robvanderleek/create-issue-branch@main
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
