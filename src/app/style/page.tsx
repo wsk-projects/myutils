@@ -1,4 +1,4 @@
-import Card from "@/components/ui/style/Card";
+import Card from "@/components/ui/common/Card";
 import ClampCalculator from "./render/ClampCalculator";
 
 export default function Style() {
