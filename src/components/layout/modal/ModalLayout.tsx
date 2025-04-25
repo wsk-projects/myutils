@@ -1,12 +1,12 @@
 "use client";
 
-import { LayoutCommonProps, LayoutWrapperProps } from "@/types/props";
+import { CommonLayoutProps, WrapperLayoutProps } from "@/types/props";
 import clsx from "clsx";
 import { X } from "lucide-react";
 import React, { useEffect, useState } from "react";
 import styles from "./Modal.module.css";
 
-export interface ModalLayoutProps extends LayoutCommonProps, LayoutWrapperProps {
+export interface ModalLayoutProps extends CommonLayoutProps, WrapperLayoutProps {
   position?: "top" | "bottom";
   icon?: React.ReactNode;
   duration?: number;
@@ -21,7 +21,7 @@ const positionStyles = {
   bottom: "fixed bottom-4 left-0 right-0 z-50",
 };
 
-export function ModalLayout({
+export default function ModalLayout({
   as: Tag = "div",
   id,
   className,

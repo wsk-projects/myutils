@@ -1,8 +1,11 @@
 "use client";
 
-import { Stack } from "@/components/common/Stack";
+import Stack from "@/components/ui/common/Stack";
 import { Form } from "@/components/ui/style/Form";
 import Modal from "@/components/ui/style/Modal";
+import { Switch } from "@/components/util/Switch";
+import { Match } from "@/components/util/Switch";
+import { Copy } from "lucide-react";
 import { useState } from "react";
 
 const breakpoints: Record<string, number> = {
@@ -40,7 +43,6 @@ export default function ClampCalculator() {
 
     const [start, end] = range;
     const rangeStartIndex = bpKeys.indexOf(start);
-    const rangeEndIndex = bpKeys.indexOf(end);
 
     // 두 개 선택된 상태에서 작은 값 클릭, 초기화
     if (selectedBreakpointIndex === rangeStartIndex) {
@@ -166,19 +168,30 @@ export default function ClampCalculator() {
       </Form.Container>
 
       {/* 결과창 */}
-      <div className="h-8 ">
-        <code className="p-2 bg-gray-100 rounded break-all block text-black text-xs truncate">
-          {result || "result here"}
-        </code>
+      <div className="flex flex-row justify-between items-center h-8 p-2 rounded bg-gray-100">
+        <code className="w-full text-black text-xs truncate">{result || "result here"}</code>
+        <button
+          type="button"
+          onClick={() => {
+            if (result) {
+              navigator.clipboard.writeText(result);
+              setShowModal(true);
+            }
+          }}
+          className={`p-1 rounded hover:bg-gray-200 ${!result && "opcaity-40 pointer-events-none"}`}
+        >
+          <Copy className="w-4 h-4 text-gray-600" />
+        </button>
       </div>
 
-      {showModal ? (
-        error ? (
-          <Modal.Error message={error} onClose={() => setShowModal(false)} />
-        ) : (
+      <Switch when={showModal}>
+        <Match when={!!error}>
+          <Modal.Error message={error!} onClose={() => setShowModal(false)} />
+        </Match>
+        <Match when={!error}>
           <Modal.Info message="복사 완료! 원하시는 곳에 붙여넣기 해주세요." onClose={() => setShowModal(false)} />
-        )
-      ) : null}
+        </Match>
+      </Switch>
     </>
   );
 }

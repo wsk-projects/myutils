@@ -1,4 +1,4 @@
-import { CardLayout, CardLayoutProps } from "@/components/layout/CardLayout";
+import CardLayout, { CardLayoutProps } from "@/components/layout/CardLayout";
 
 export interface CardProps extends CardLayoutProps {
   title?: string;

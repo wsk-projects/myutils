@@ -1,6 +1,6 @@
 import InfoSvg from "@/components/img/svg/Info";
 import WarningSvg from "@/components/img/svg/Warning";
-import { ModalLayout } from "@/components/layout/modal/ModalLayout";
+import ModalLayout from "@/components/layout/modal/ModalLayout";
 import React from "react";
 
 interface ModalBuilderProps {

@@ -1,8 +1,8 @@
-import { LayoutWrapperProps } from "@/types/props";
-import { LayoutCommonProps } from "@/types/props/LayoutCommonProps";
+import { WrapperLayoutProps } from "@/types/props";
+import { CommonLayoutProps } from "@/types/props/CommonLayoutProps";
 import clsx from "clsx";
 
-export interface SelectLayoutProps extends LayoutCommonProps, Pick<LayoutWrapperProps, "children"> {
+export interface SelectLayoutProps extends CommonLayoutProps, Pick<WrapperLayoutProps, "children"> {
   value: string;
   onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
 }
