@@ -41,7 +41,7 @@ export default function ClampCalculator() {
       return;
     }
 
-    const [start, end] = range;
+    const [start, _end] = range;
     const rangeStartIndex = bpKeys.indexOf(start);
 
     // 두 개 선택된 상태에서 작은 값 클릭, 초기화
