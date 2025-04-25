@@ -1,0 +1,29 @@
+mode: immediate # 이슈 생성 즉시 실행
+
+# 브랜치 생성 규칙
+branchName: ${issue.number}
+branches:
+  - label: "Documentation :memo:"
+    skip: true
+  - label: "Bug :bug:"
+    skip: true
+  - label: "*"
+    name: "develop"
+    prefix: "issues/"
+
+# Pull Request 설정
+openPR: true
+autoLinkIssue: true
+autoCloseIssue: true
+autoDeleteBranch: true
+
+copyIssueDescriptionToPR: true
+copyIssueLabelsToPR: true
+copyIssueAssigneeToPR: true
+# copyIssueProjectsToPR: true
+# copyIssueMilestoneToPR: true
+
+copyPullRequestTemplate: true
+prSkipCI: true
+
+commentMessage: "Branch [${branchName}](https://github.com/${repository.owner.login}/${repository.name}/tree/${branchName}) created for issue: #${issue.number}"
