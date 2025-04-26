@@ -1,13 +1,18 @@
+import clsx from "clsx";
 import FlexLayout, { FlexLayoutProps } from "../../layout/flex/FlexLayout";
 
-const baseStyle = "flex gap-2";
+interface StackProps extends Omit<FlexLayoutProps, "direction"> {
+  wrap?: boolean;
+}
+
+const baseStyle = "gap-2";
 
 const Stack = {
-  H: (props: Omit<FlexLayoutProps, "direction">) => (
-    <FlexLayout {...props} direction="horizontal" className={baseStyle} />
+  H: ({ justify = "start", align = "center", ...props }: StackProps) => (
+    <FlexLayout {...props} className={clsx(baseStyle, props.className)} justify={justify} align={align} horizontal />
   ),
-  V: (props: Omit<FlexLayoutProps, "direction">) => (
-    <FlexLayout {...props} direction="vertical" className={baseStyle} />
+  V: ({ justify = "start", align = "start", ...props }: StackProps) => (
+    <FlexLayout {...props} className={clsx(baseStyle, props.className)} justify={justify} align={align} />
   ),
 };
 

@@ -7,6 +7,7 @@ import namesPlugin from "colord/plugins/names";
 import { Check, Copy } from "lucide-react";
 import { useRef, useState } from "react";
 import Button from "@/components/ui/common/Button";
+import Stack from "@/components/ui/common/Stack";
 
 extend([namesPlugin]);
 
@@ -194,61 +195,55 @@ export default function ColorTool() {
   };
 
   return (
-    <div className="flex-1 flex flex-col h-full gap-4">
+    <Stack.V>
       {/* 현재 색상 및 HEX 입력 */}
-      <div className="w-full h-1/2 flex flex-col gap-2 p-4 bg-white rounded-lg shadow-md">
-        <div className="flex flex-col gap-4">
-          {/* 색상 디스플레이 */}
-          <label className="font-medium">미리보기</label>
-          <div
-            className="w-full h-48 rounded-lg border cursor-pointer"
-            style={{ backgroundColor: hex }}
-            onClick={handleCopy}
+      <Stack.V className="p-4 bg-white rounded-lg shadow-md">
+        {/* 색상 디스플레이 */}
+        <label className="font-medium">미리보기</label>
+        <div
+          className="w-full h-48 rounded-lg border cursor-pointer"
+          style={{ backgroundColor: hex }}
+          onClick={handleCopy}
+        />
+        {/* 색상 형식 선택 버튼 */}
+        <Stack.H>
+          {(["hex", "rgb", "hsl"] as ColorFormat[]).map((format) => (
+            <Button.Select
+              key={format}
+              onClick={() => handleFormatClick(format)}
+              className={"text-xs"}
+              selected={colorFormat === format}
+            >
+              {format.toUpperCase()}
+            </Button.Select>
+          ))}
+        </Stack.H>
+
+        <Stack.H className="p-2 rounded bg-gray-100">
+          <input
+            type="text"
+            value={getFormattedColorCode()}
+            onChange={(e) => {
+              if (colorFormat === "hex") {
+                const newHex = e.target.value;
+                setHex(newHex);
+                if (/^#[0-9A-Fa-f]{6}$/.test(newHex)) {
+                  updateFromHex(newHex);
+                }
+              }
+            }}
+            className="w-full text-black text-xs bg-transparent border-none focus:outline-none"
           />
-          {/* 색상 형식 선택 버튼 */}
-          <div className="flex flex-wrap gap-1">
-            {(["hex", "rgb", "hsl"] as ColorFormat[]).map((format) => (
-              <Button.Select
-                key={format}
-                onClick={() => handleFormatClick(format)}
-                className={"px-2 py-1 rounded text-xs border"}
-                selected={colorFormat === format}
-              >
-                {format.toUpperCase()}
-              </Button.Select>
-            ))}
-          </div>
-          <div className="relative">
-            <div>
-              <label className="hidden text-sm font-medium">색상 코드</label>
-              <div className="flex flex-row justify-between items-center p-2 rounded bg-gray-100">
-                <input
-                  type="text"
-                  value={getFormattedColorCode()}
-                  onChange={(e) => {
-                    if (colorFormat === "hex") {
-                      const newHex = e.target.value;
-                      setHex(newHex);
-                      if (/^#[0-9A-Fa-f]{6}$/.test(newHex)) {
-                        updateFromHex(newHex);
-                      }
-                    }
-                  }}
-                  className="w-full text-black text-xs bg-transparent border-none focus:outline-none"
-                />
-                <button
-                  onClick={handleCopy}
-                  tabIndex={-1}
-                  className="p-1 rounded hover:bg-gray-200 transition-colors cursor-pointer"
-                  title="복사하기"
-                >
-                  <Copy size={16} className="text-gray-600" />
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+          <button
+            onClick={handleCopy}
+            tabIndex={-1}
+            className="p-1 rounded hover:bg-gray-200 transition-colors cursor-pointer"
+            title="복사하기"
+          >
+            <Copy size={16} className="text-gray-600" />
+          </button>
+        </Stack.H>
+      </Stack.V>
 
       {/* RGB 조절 */}
       <div className="w-full h-1/4 flex flex-col gap-2 p-4 bg-white rounded-lg shadow-md">
@@ -340,6 +335,6 @@ export default function ColorTool() {
           <Modal.Info duration={2000} message={`색상 코드 ${getFormattedColorCode()}가 클립보드에 복사되었습니다.`} />{" "}
         </Match>
       </Switch>
-    </div>
+    </Stack.V>
   );
 }

@@ -1,16 +1,12 @@
+import ButtonLayout, { ButtonLayoutProps } from "@/components/layout/button/ButtonLayout";
 import clsx from "clsx";
 
-interface ButtonProps {
-  className?: string;
-  children: React.ReactNode;
-  onClick?: () => void;
+interface ButtonProps extends ButtonLayoutProps {
   variant: "primary" | "secondary" | "select";
   selected?: boolean;
 }
 
-function ButtonBuilder({ className, children, onClick, variant, selected }: ButtonProps) {
-  const baseStyle = "px-2 py-1 rounded-md text-sm";
-
+function ButtonBuilder({ id, className, children, onClick, variant, selected }: ButtonProps) {
   const variantStyle = {
     primary: "bg-black text-white hover:bg-gray-800",
     secondary: "bg-white text-black hover:bg-gray-100",
@@ -18,9 +14,13 @@ function ButtonBuilder({ className, children, onClick, variant, selected }: Butt
   };
 
   return (
-    <button className={clsx(baseStyle, variantStyle[variant], className)} onClick={onClick}>
+    <ButtonLayout
+      id={id}
+      className={clsx("px-2 py-1 rounded-md text-sm border", variantStyle[variant], className)}
+      onClick={onClick}
+    >
       {children}
-    </button>
+    </ButtonLayout>
   );
 }
 
