@@ -108,68 +108,68 @@ export default function ClampCalculator() {
   return (
     <>
       {/* 단위 선택 버튼 (우측 정렬) */}
-      <div className="flex justify-end gap-2 mb-2">
-        <button
-          type="button"
-          onClick={() => setUnit("rem")}
-          className={`text-sm px-2 py-1 rounded border ${
-            unit === "rem" ? "bg-black text-white" : "bg-white text-black"
-          }`}
-        >
+      <Stack.H justify="end">
+        <Button.Select onClick={() => setUnit("rem")} className={"text-sm"} selected={unit === "rem"}>
           rem
-        </button>
-        <button
-          type="button"
-          onClick={() => setUnit("px")}
-          className={`text-sm px-2 py-1 rounded border ${
-            unit === "px" ? "bg-black text-white" : "bg-white text-black"
-          }`}
-        >
+        </Button.Select>
+        <Button.Select onClick={() => setUnit("px")} className={"text-sm"} selected={unit === "px"}>
           px
-        </button>
-      </div>
+        </Button.Select>
+      </Stack.H>
 
       <Form.Container onSubmit={calculate}>
-        {/* from 브레이크포인트 선택 */}
-        <Stack.V>
-          <p className="text-sm font-medium text-gray-700">Breakpoint</p>
-          <div className="flex flex-wrap gap-1">
-            {bpKeys.map((bp) => {
-              const active =
-                range &&
-                bpKeys.indexOf(bp) >= bpKeys.indexOf(range[0]) &&
-                bpKeys.indexOf(bp) <= bpKeys.indexOf(range[1]);
-              return (
-                <button
-                  key={bp}
-                  type="button"
-                  onClick={() => handleBreakpointClick(bp)}
-                  className={`px-2 py-1 rounded text-xs border ${
-                    active ? "bg-black text-white" : "bg-white text-gray-800"
-                  }`}
-                >
-                  {bp}
-                </button>
-              );
-            })}
-          </div>
-        </Stack.V>
+        <Stack.V className="gap-4">
+          {/* from 브레이크포인트 선택 */}
+          <Stack.V>
+            <label className="text-sm font-medium text-gray-700">Breakpoint</label>
+            <Stack.H>
+              {bpKeys.map((bp) => {
+                const active =
+                  range &&
+                  bpKeys.indexOf(bp) >= bpKeys.indexOf(range[0]) &&
+                  bpKeys.indexOf(bp) <= bpKeys.indexOf(range[1]);
+                return (
+                  <button
+                    key={bp}
+                    type="button"
+                    onClick={() => handleBreakpointClick(bp)}
+                    className={`px-2 py-1 rounded text-xs border ${
+                      active ? "bg-black text-white" : "bg-white text-gray-800"
+                    }`}
+                  >
+                    {bp}
+                  </button>
+                );
+              })}
+            </Stack.H>
+          </Stack.V>
 
-        {/* 수치 입력(From, To) */}
-        <Stack.V>
-          <p className="text-sm font-medium text-gray-700">Size</p>
-          <Stack.H>
-            <Form.Input value={fromValue} onChange={(e) => setFromValue(e.target.value)} placeholder="min" />
-            <Form.Input value={toValue} onChange={(e) => setToValue(e.target.value)} placeholder="max" />
-          </Stack.H>
-        </Stack.V>
+          {/* 수치 입력(From, To) */}
+          <Stack.V className="gap-2">
+            <label className="text-sm font-medium text-gray-700">Size</label>
+            <Stack.H>
+              <Form.Input
+                className="w-1/2"
+                value={fromValue}
+                onChange={(e) => setFromValue(e.target.value)}
+                placeholder="min"
+              />
+              <Form.Input
+                className="w-1/2"
+                value={toValue}
+                onChange={(e) => setToValue(e.target.value)}
+                placeholder="max"
+              />
+            </Stack.H>
+          </Stack.V>
 
-        {/* 확인 버튼 */}
-        <Button.Primary>계산하기 & 복사</Button.Primary>
+          {/* 확인 버튼 */}
+          <Button.Primary className="w-full">계산하기 & 복사</Button.Primary>
+        </Stack.V>
       </Form.Container>
 
       {/* 결과창 */}
-      <div className="flex flex-row justify-between items-center h-8 p-2 rounded bg-gray-100">
+      <Stack.H justify="between" className="h-8 p-2 rounded bg-gray-100">
         <code className="w-full text-black text-xs truncate">{result || "result here"}</code>
         <button
           type="button"
@@ -183,7 +183,7 @@ export default function ClampCalculator() {
         >
           <Copy className="w-4 h-4 text-gray-600" />
         </button>
-      </div>
+      </Stack.H>
 
       <Switch when={showModal}>
         <Match when={!!error}>

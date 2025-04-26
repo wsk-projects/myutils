@@ -1,4 +1,4 @@
-export interface CommonLayoutProps {
+export interface CommonProps {
   id?: string;
   className?: string;
 }
